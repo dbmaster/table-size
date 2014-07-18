@@ -1,0 +1,10 @@
+<tools>
+    <tool id="table-size" title="Table Size" projectTypes="inventory">
+        <description>Run select count (*) for all tables in a database</description>
+        <parameters>
+            <parameter name="p_database" title="Database"   type="string" 
+                       required="true" suggestion="project_databases" width="300" />
+        </parameters>
+        <output  script="table-size.groovy" type="html" />
+    </tool>
+</tools>
