@@ -3,6 +3,7 @@ import com.branegy.dbmaster.model.*
 import com.branegy.service.connection.api.ConnectionService
 import com.branegy.dbmaster.connection.ConnectionProvider
 import com.branegy.dbmaster.connection.JDBCDialect
+import java.sql.Connection
 
 def test_server    = p_database.split("\\.")[0]
 def test_database  = p_database.split("\\.")[1]
@@ -25,8 +26,10 @@ logger.info("Loading list of tables from database ${test_database}")
 
 model = dialect.getModel(test_server, options)
 
+connection.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);
 connection = connector.getJdbcConnection(test_database)
 dbm.closeResourceOnExit(connection)
+
 
 def sql = new Sql(connection)
 
